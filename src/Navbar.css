@@ -50,4 +50,5 @@
 .select-container {
     position: absolute;
     right: 0px;
+    margin-right: 1rem;
 }
