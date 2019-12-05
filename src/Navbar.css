@@ -46,3 +46,8 @@
 .rc-slider-rail {
     height: 8px;
 }
+
+.select-container {
+    position: absolute;
+    right: 0px;
+}
