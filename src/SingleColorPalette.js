@@ -1,11 +1,25 @@
 import React, {Component} from 'react';
 import ColorBox from './ColorBox';
+import Navbar from './Navbar';
+
+import './SingleColorPalette.css';
 
 class SingleColorPalette extends Component{
     constructor(props){
         super(props);
+        this.state = {
+            format: "hex"
+        }
         this._shades = this.gatherShades(this.props.palette, this.props.colorId);
+        this.changeFormat = this.changeFormat.bind(this);
     }
+
+    changeFormat(val){
+        this.setState({
+            format: val
+        })
+    }
+
     gatherShades(palette, colorToFilterBy){
         let shades = [];
         let allColors = palette.colors;
@@ -18,15 +32,25 @@ class SingleColorPalette extends Component{
         return shades.slice(1);
     }
     render(){
+        const {paletteName, emoji} = this.props.palette;
+        const {format} = this.state;
         const colorBoxes = this._shades.map(color => (
-            <ColorBox key={color.id} name={color.name} background={color.hex} showLink={false}/>
+            <ColorBox key={color.name} 
+                      name={color.name} 
+                      background={color[format]} 
+                      showLink={false}
+                      single={true}/>
         ));
         return(
             <div className="Palette">
-                <h1>hahah</h1>
+                <Navbar handleChange={this.changeFormat} showSlider={false}/>
                 <div className="Palette-colors">
                     {colorBoxes}
                 </div>
+                <footer className="Palette-footer">
+                    {paletteName}
+                    <span className="emoji">{emoji}</span>
+                </footer>
             </div>
         )
     }

@@ -35,20 +35,23 @@ class Navbar extends Component {
     }
 
     render(){
-        const {level, changeLevel} = this.props;
+        const {level, changeLevel, showSlider} = this.props;
         const {format} = this.state;
         return(
             <header className="Navbar">
                 <div className="logo">
                     <Link to="/">MassiveColorPicker</Link>
                 </div>
-                <div className="slider-container">
-                    <span>Level: {level}</span>
-                    <div className="slider">
-                        <Slider defaultValue={level} min={100} max={900} step={100}
-                                onAfterChange={changeLevel} />
+                {showSlider && 
+                (
+                    <div className="slider-container">
+                        <span>Level: {level}</span>
+                        <div className="slider">
+                            <Slider defaultValue={level} min={100} max={900} step={100}
+                                    onAfterChange={changeLevel} />
+                        </div>
                     </div>
-                </div>
+                )}
                 <div className="select-container">
                     <Select value={format} onChange={this.handleFormatChange}>
                         <MenuItem value="hex">HEX - #ffffff</MenuItem>
@@ -58,7 +61,7 @@ class Navbar extends Component {
                 </div>
                 <Snackbar anchorOrigin={{vertical: "bottom", horizontal: "left"}} open={this.state.open}
                           autoHideDuration={3000}
-                          message={<sapn id="message-id">Format changed to {format.toUpperCase()}</sapn>}
+                          message={<span id="message-id">Format changed to {format.toUpperCase()}</span>}
                           ContentProps={{
                               "aria-describedby": "message-id"
                           }}
