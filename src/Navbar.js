@@ -5,9 +5,10 @@ import Select from '@material-ui/core/Select';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import 'rc-slider/assets/index.css';
-import './Navbar.css';
 import { MenuItem } from '@material-ui/core';
+import { withStyles } from '@material-ui/styles';
+import 'rc-slider/assets/index.css';
+import styles from './styles/NavbarStyles';
 
 class Navbar extends Component {
     constructor(props){
@@ -35,24 +36,24 @@ class Navbar extends Component {
     }
 
     render(){
-        const {level, changeLevel, showSlider} = this.props;
+        const {level, changeLevel, showSlider, classes} = this.props;
         const {format} = this.state;
         return(
-            <header className="Navbar">
-                <div className="logo">
+            <header className={classes.Navbar}>
+                <div className={classes.logo}>
                     <Link to="/">MassiveColorPicker</Link>
                 </div>
                 {showSlider && 
                 (
-                    <div className="slider-container">
+                    <div>
                         <span>Level: {level}</span>
-                        <div className="slider">
+                        <div className={classes.slider}>
                             <Slider defaultValue={level} min={100} max={900} step={100}
                                     onAfterChange={changeLevel} />
                         </div>
                     </div>
                 )}
-                <div className="select-container">
+                <div className={classes.selectContainer}>
                     <Select value={format} onChange={this.handleFormatChange}>
                         <MenuItem value="hex">HEX - #ffffff</MenuItem>
                         <MenuItem value="rgb">RGB - rgb(255, 255, 255)</MenuItem>
@@ -79,4 +80,4 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+export default withStyles(styles)(Navbar);
