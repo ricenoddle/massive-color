@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
-// import PaletteFormNav from "./PaletteFormNav";
+import PaletteFormNav from "./PaletteFormNav";
 // import ColorPickerForm from "./ColorPickerForm";
 import Drawer from "@material-ui/core/Drawer";
 import Typography from "@material-ui/core/Typography";
@@ -13,7 +13,6 @@ import DraggableColorList from "./DraggableColorList";
 import { arrayMove } from "react-sortable-hoc";
 import styles from "./styles/NewPaletteFormStyles";
 import seedColors from "./seedColors";
-import {ChromePicker} from 'react-color';
 
 class NewPaletteForm extends Component {
   static defaultProps = {
@@ -26,7 +25,6 @@ class NewPaletteForm extends Component {
       colors: seedColors[0].colors,
     };
     this.addNewColor = this.addNewColor.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.removeColor = this.removeColor.bind(this);
     this.clearColors = this.clearColors.bind(this);
@@ -45,11 +43,6 @@ class NewPaletteForm extends Component {
     this.setState({
       colors: [...this.state.colors, newColor],
       newColorName: ""
-    });
-  }
-  handleChange(evt) {
-    this.setState({
-      [evt.target.name]: evt.target.value
     });
   }
   clearColors() {
