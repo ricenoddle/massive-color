@@ -16,16 +16,10 @@ class PaletteFormNav extends Component {
   constructor(props) {
     super(props);
     this.state = { newPaletteName: "", formShowing: false };
-    this.handleChange = this.handleChange.bind(this);
     this.showForm = this.showForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
   }
 
-  handleChange(evt) {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    });
-  }
   showForm() {
     this.setState({ formShowing: true });
   }
