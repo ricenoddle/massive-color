@@ -82,7 +82,7 @@ class NewPaletteForm extends Component {
   }
   onSortEnd = ({ oldIndex, newIndex }) => {
     this.setState(({ colors }) => ({
-    //   colors: arrayMove(colors, oldIndex, newIndex)
+      colors: arrayMove(colors, oldIndex, newIndex)
     }));
   };
 
@@ -150,13 +150,13 @@ class NewPaletteForm extends Component {
           })}
         >
           <div className={classes.drawerHeader} />
-          {/* <DraggableColorList
+          <DraggableColorList
             colors={colors}
             removeColor={this.removeColor}
             axis='xy'
             onSortEnd={this.onSortEnd}
             distance={20}
-          /> */}
+          />
         </main>
       </div>
     );
